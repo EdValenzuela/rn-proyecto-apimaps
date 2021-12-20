@@ -1,16 +1,16 @@
 import 'react-native-gesture-handler';
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
-import StackNavigator from './src/navigation/StackNavigator';
 
 import ActiveGpsProvider from './src/context/ActiveGps/ActiveGpsState';
+import TabsNavigator from './src/navigation/TabsNavigator';
 
 const App = () => {
   return (
     <>
       <NavigationContainer>
         <ActiveGpsProvider>
-          <StackNavigator />
+          <TabsNavigator />
         </ActiveGpsProvider>
       </NavigationContainer>
     </>

@@ -1,13 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import {StyleSheet} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import { useLocation } from '../../hooks/useLocation';
 import LoadingScreen from '../../Screens/LoadingScreen';
 import ButtonFab from '../../components/MapView/ButtonFab'
-
-const mapMarker = [{
-    
-}]
+import { mapMarker } from '../../data';
 
 const MapViewComp = () => {
     
@@ -34,7 +31,7 @@ const MapViewComp = () => {
             style={{
                 position: 'absolute',
                 right: 25,
-                bottom: 25
+                bottom: 100
             }}
         />
         <MapView
@@ -49,22 +46,19 @@ const MapViewComp = () => {
                 longitudeDelta: 0.0421,
             }}
         >
-            <Marker
-                coordinate={{
-                    latitude: -33.5920303,
-                    longitude: -70.70545044738465,
-                }} 
-                title={'Municipalidad'}
-                description="Ilustre municipalidad de San Bdo"
-            /> 
-            <Marker
-                coordinate={{
-                    latitude: -33.4257845,
-                    longitude: -70.6187814,
-                }} 
-                title={'Escalab'}
-                description="Escalab academy"
-            /> 
+            {
+                mapMarker.map( ({latitude, longitude, title, description}, indice) => (
+                    <Marker 
+                        key={indice}
+                        coordinate={{
+                            latitude,
+                            longitude,
+                        }} 
+                        title={title}
+                        description={description}
+                    />
+                ))
+            }
         </MapView>
     </>
   );
